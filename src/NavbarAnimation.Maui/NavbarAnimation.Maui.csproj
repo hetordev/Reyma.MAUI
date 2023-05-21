@@ -32,7 +32,8 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
-	  <CodesignKey>iPhone Developer</CodesignKey>
+	  <CodesignKey>Apple Development: hector_galicialuna@hotmail.com (829V8L57S2)</CodesignKey>
+	  <CodesignProvision>iOS Team Provisioning Profile: bsb.test</CodesignProvision>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
@@ -44,8 +45,8 @@
 	  <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <CodesignKey>Apple Development: Hector Galicia (3K9W74SMU5)</CodesignKey>
-	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	  <!--<CodesignKey>Apple Development: Hector Galicia (3K9W74SMU5)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>-->
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
@@ -54,6 +55,8 @@
 		<PackageReference Include="IdentityModel.OidcClient" Version="5.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+		<PackageReference Include="Sharpnado.CollectionView.Maui" Version="3.0.0" />
+		<PackageReference Include="Sharpnado.Maui.TaskLoaderView" Version="2.5.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,6 +91,7 @@
 	  <None Remove="Models\Locals\" />
 	  <None Remove="Models\Respones\" />
 	  <None Remove="Models\Respones\Tickets\" />
+	  <None Remove="Views\Silly\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -136,5 +140,6 @@
 	  <Folder Include="DataStores\" />
 	  <Folder Include="Models\Locals\" />
 	  <Folder Include="Models\Respones\Tickets\" />
+	  <Folder Include="Views\Silly\" />
 	</ItemGroup>
 </Project>

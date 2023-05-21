@@ -1,8 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Collections.Generic;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using NavbarAnimation.Maui.DataStores;
 using NavbarAnimation.Maui.Models.Respones.Base;
+using Sharpnado.TaskLoaderView;
 
 namespace NavbarAnimation.Maui.ViewModels.Base
 {
@@ -11,6 +13,10 @@ namespace NavbarAnimation.Maui.ViewModels.Base
     /// </summary>
     public abstract class BaseViewModel : ObservableObject
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        public abstract void Load();
     }
 
     /// <summary>
@@ -29,8 +35,30 @@ namespace NavbarAnimation.Maui.ViewModels.Base
         public BaseListViewModel(TDataStore dataStore)
         {
             DataStore = dataStore;
+
+            EntityLoaderNotifier = new TaskLoaderNotifier<IReadOnlyCollection<TResponse>>();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual TaskLoaderNotifier<IReadOnlyCollection<TResponse>> EntityLoaderNotifier { get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public override void Load()
+        {
+            EntityLoaderNotifier.Load(async _ =>
+            {
+                await Task.Delay(2500);
+
+                var pagedResponse = await DataStore.GetList(pageSize: 7);
+
+                return pagedResponse.Results.ToList().AsReadOnly();
+            });
+        }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -44,7 +72,7 @@ namespace NavbarAnimation.Maui.ViewModels.Base
         [RelayCommand]
         private async Task InitialLoad()
         {
-            var pagedResponse = await DataStore.GetList(pageSize: 20);
+            var pagedResponse = await DataStore.GetList(pageSize: 7);
 
             DataSource = pagedResponse.Results;
         }

@@ -2,10 +2,17 @@
 <ContentPage x:Class="NavbarAnimation.Maui.Views.Pages.RibbonPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sho="http://sharpnado.com"
              xmlns:local="clr-namespace:NavbarAnimation.Maui.Views.Pages"
+             xmlns:taskLoaderView="clr-namespace:Sharpnado.TaskLoaderView;assembly=Sharpnado.Maui.TaskLoaderView"
              xmlns:c="clr-namespace:NavbarAnimation.Maui.Views.Controls">
+    <ContentPage.Resources>
+
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
+
             <!--
             <Label 
                 Text="RibbonPage"
@@ -20,8 +27,21 @@
             <Button Text="Load Data"
                     Command="{Binding InitialLoadCommand}"
                     HorizontalOptions="Center" />
+
             
-            <CollectionView ItemsSource="{Binding DataSource}">
+            <taskLoaderView:TaskLoaderView
+                Grid.Row="1"
+                IsClippedToBounds="False"
+                Style="{StaticResource SillyTaskLoader}"
+                TaskLoaderNotifier="{Binding EntityLoaderNotifier}"
+                Padding="20"
+                VerticalOptions="Fill">
+                <RefreshView>
+
+                </RefreshView>
+            </taskLoaderView:TaskLoaderView>
+
+            <!--<CollectionView ItemsSource="{Binding DataSource}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10">
@@ -44,8 +64,7 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
-            
+            </CollectionView>-->
             
         </StackLayout>
     </ContentPage.Content>

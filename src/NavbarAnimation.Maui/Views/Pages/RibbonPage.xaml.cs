@@ -1,4 +1,5 @@
-﻿using NavbarAnimation.Maui.ViewModels.Pages;
+﻿using NavbarAnimation.Maui.ViewModels.Base;
+using NavbarAnimation.Maui.ViewModels.Pages;
 
 namespace NavbarAnimation.Maui.Views.Pages;
 
@@ -10,5 +11,13 @@ public partial class RibbonPage : ContentPage
         InitializeComponent();
 
         BindingContext = viewModel;
+    }
+
+    protected override void OnAppearing()
+    {
+        if (BindingContext is not BaseViewModel baseViewModel)
+            return;
+
+        baseViewModel.Load();
     }
 }

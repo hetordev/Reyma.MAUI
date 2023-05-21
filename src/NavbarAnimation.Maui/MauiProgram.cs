@@ -5,6 +5,8 @@ using NavbarAnimation.Maui.DataStores;
 using NavbarAnimation.Maui.ViewModels.Pages;
 using NavbarAnimation.Maui.Views.Pages;
 
+using Sharpnado;
+using Sharpnado.CollectionView;
 using SimpleToolkit.Core;
 using SimpleToolkit.SimpleShell;
 
@@ -26,8 +28,11 @@ namespace NavbarAnimation.Maui
                     fonts.AddFont("Comfortaa-Medium.ttf", "MediumFont");
                     fonts.AddFont("Comfortaa-SemiBold.ttf", "SemiBoldFont");
                 })
+                .UseSharpnadoCollectionView(loggerEnable: false)
                 .UseSimpleToolkit()
                 .UseSimpleShell();
+
+            Sharpnado.TaskLoaderView.Initializer.Initialize(true);
 
 #if ANDROID || IOS
             builder.DisplayContentBehindBars();
