@@ -31,9 +31,9 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
-	  <CreatePackage>false</CreatePackage>
+	  <!--<CreatePackage>false</CreatePackage>
 	  <CodesignKey>Apple Development: hector_galicialuna@hotmail.com (829V8L57S2)</CodesignKey>
-	  <CodesignProvision>iOS Team Provisioning Profile: bsb.test</CodesignProvision>
+	  <CodesignProvision>iOS Team Provisioning Profile: bsb.test</CodesignProvision>-->
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
@@ -44,11 +44,14 @@
 	  <CodesignKey>Mac Developer</CodesignKey>
 	  <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
-	  <!--<CodesignKey>Apple Development: Hector Galicia (3K9W74SMU5)</CodesignKey>
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'"><!--<CodesignKey>Apple Development: Hector Galicia (3K9W74SMU5)</CodesignKey>
 	  <CodesignProvision>VS: WildCard Development</CodesignProvision>-->
+	
+	  <CodesignKey>Apple Development: Hector Galicia (3K9W74SMU5)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="AlohaKit" Version="1.0.74" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="SimpleToolkit.Core" Version="2.0.2" />
 		<PackageReference Include="SimpleToolkit.SimpleShell" Version="2.0.0" />
@@ -75,6 +78,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Platforms\Android\Resources\xml\auto_backup_rules.xml" />
 	  <None Remove="Resources\Fonts\Comfortaa-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Comfortaa-Light.ttf" />
 	  <None Remove="Resources\Fonts\Comfortaa-Medium.ttf" />
@@ -113,6 +117,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\Borders.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Shadows.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Texts.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Controls\Cells\SillyListCell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Controls\TabBarIconView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -141,5 +157,10 @@
 	  <Folder Include="Models\Locals\" />
 	  <Folder Include="Models\Respones\Tickets\" />
 	  <Folder Include="Views\Silly\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Resources\Styles\Borders.xaml.cs">
+	    <DependentUpon>Borders.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

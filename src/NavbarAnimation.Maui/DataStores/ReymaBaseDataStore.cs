@@ -39,7 +39,7 @@ public abstract class ReymaBaseDataStore<TEntity, TResponse> : IReymaBaseDataSto
     protected virtual async Task<TResult> ProcessHttpRequest<TResult>(string baseUrl)
     {
         var httpClient = _httpClientFactory.CreateClient("ReymaMobileHttpClient");
-        var httpResponseMessage = await httpClient.GetAsync(baseUrl);
+        var httpResponseMessage = await httpClient.GetAsync(baseUrl);;
 
         if (httpResponseMessage.IsSuccessStatusCode)
         {

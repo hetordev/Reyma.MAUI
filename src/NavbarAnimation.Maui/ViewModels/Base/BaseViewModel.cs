@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Input;
 
 using NavbarAnimation.Maui.DataStores;
 using NavbarAnimation.Maui.Models.Respones.Base;
+using Sharpnado.CollectionView.ViewModels;
 using Sharpnado.TaskLoaderView;
 
 namespace NavbarAnimation.Maui.ViewModels.Base
@@ -34,9 +35,16 @@ namespace NavbarAnimation.Maui.ViewModels.Base
 
         public BaseListViewModel(TDataStore dataStore)
         {
+            currentIndex = 0;
+
             DataStore = dataStore;
 
             EntityLoaderNotifier = new TaskLoaderNotifier<IReadOnlyCollection<TResponse>>();
+            EntityLoaderNotifier.Load(async _ =>
+            {
+                await Task.CompletedTask;
+                return Enumerable.Empty<TResponse>().ToList().AsReadOnly();
+            });
         }
 
         /// <summary>
@@ -49,13 +57,16 @@ namespace NavbarAnimation.Maui.ViewModels.Base
         /// </summary>
         public override void Load()
         {
+            DataSource = new ObservableRangeCollection<TResponse>();
+
             EntityLoaderNotifier.Load(async _ =>
             {
-                await Task.Delay(2500);
+                var pagedResponse = await DataStore.GetList(pageSize: 1);
+                var results = pagedResponse.Results.ToList();
 
-                var pagedResponse = await DataStore.GetList(pageSize: 7);
+                DataSource.AddRange(results);
 
-                return pagedResponse.Results.ToList().AsReadOnly();
+                return results.AsReadOnly();
             });
         }
         
@@ -63,7 +74,13 @@ namespace NavbarAnimation.Maui.ViewModels.Base
         /// 
         /// </summary>
         [ObservableProperty]
-        private IEnumerable<TResponse> dataSource;
+        private ObservableRangeCollection<TResponse> dataSource;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [ObservableProperty]
+        private int currentIndex;
 
         /// <summary>
         /// 
@@ -72,9 +89,7 @@ namespace NavbarAnimation.Maui.ViewModels.Base
         [RelayCommand]
         private async Task InitialLoad()
         {
-            var pagedResponse = await DataStore.GetList(pageSize: 7);
-
-            DataSource = pagedResponse.Results;
+            await Task.CompletedTask;
         }
     }
 }

@@ -8,8 +8,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles/Shadows.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Borders.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/Styles/Texts.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <x:String x:Key="RibbonPath">m 46.766321,6.7280927 0,0.4890197 m -0.409258,0.6619097 v 0.872802 l 0.401942,-0.2320618 0.430869,0.2487607 -0.0063,-0.9333499 M 45.86846,7.3904201 c 0.09513,-0.4068789 0.09265,-0.4104874 0,-0.8185129 0.373913,-0.1806492 0.37656,-0.1794681 0.522012,-0.522011 0.358063,0.1801273 0.361429,0.1758554 0.743345,0 0.189975,0.3586256 0.188103,0.3619756 0.536625,0.5366271 -0.126901,0.4226984 -0.130829,0.4214347 0,0.8164251 -0.321698,0.2097587 -0.319857,0.2196931 -0.558551,0.5585515 -0.207373,-0.1956806 -0.206635,-0.1946236 -0.337098,-0.1946235 -0.130463,1e-7 -0.128195,0.00636 -0.340807,0.1967656 C 46.192141,7.5881918 46.194599,7.5865041 45.86846,7.3904201 Z</x:String>

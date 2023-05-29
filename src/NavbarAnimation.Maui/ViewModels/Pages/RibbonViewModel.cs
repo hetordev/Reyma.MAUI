@@ -65,6 +65,6 @@ public partial class RibbonViewModel : BaseListViewModel<Ticket, TicketResponse,
 
         Text = sb.ToString();
 
-        await SecureStorage.SetAsync("access_token", result.AccessToken);
+        await SecureStorage.Default.SetAsync("access_token", result.AccessToken);
     }
 }

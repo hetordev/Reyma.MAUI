@@ -383,6 +383,16 @@
     </Style>
 
     <!--Template-->
+    <x:Double x:Key="StandardPadding">15</x:Double>
+    
+    <Style
+        x:Key="Avatar"
+        ApplyToDerivedTypes="True"
+        TargetType="Image">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+    </Style>
+    
     <Style x:Key="SillyTaskLoader" TargetType="tlv:TaskLoaderView">
         <Setter Property="AccentColor" Value="{StaticResource Accent}" />
         <Setter Property="TextColor" Value="{StaticResource Primary}" />
